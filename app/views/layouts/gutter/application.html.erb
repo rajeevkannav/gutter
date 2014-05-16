@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gutter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Monitor your Linux server through a simple web dashboard. Open source and free!">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!--[if lt IE 9]>
+  <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <% ['application', 'bootstrap.min.css', 'bootstrap-responsive.min.css', 'font-awesome/css/font-awesome.min.css', 'style.css', 'pages/dashboard.css', 'odometer.css'].each do |css| %>
+      <%= stylesheet_link_tag "gutter/#{css}", media: "all" %>
+  <% end %>
+  <%= stylesheet_link_tag "gutter/application", :media => "all" %>
+  <%= javascript_include_tag "gutter/application" %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+<!-- Javascript-->
+<!-- Placed at the end of the document so the pages load faster -->
+<% ['jquery.js', 'jquery-ui.min.js', 'bootstrap.js', 'jquery.dataTables.min.js', 'odometer.js', 'dashboard.js', 'base.js'].each do |js| %>
+    <%= javascript_include_tag "gutter/#{js}" %>
+<% end %>
+
+</body>
+</html>

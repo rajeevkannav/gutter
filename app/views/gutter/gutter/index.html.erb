@@ -1,0 +1,288 @@
+<%= render :partial => 'navbar' %>
+<%= render :partial => 'subnavbar' %>
+<div class="main">
+<div class="main-inner">
+<div class="container">
+<div class="lead" style="text-align: center;">
+  <div class="btn icon-refresh js-refresh-info" data-title="Refresh all widgets!" data-toggle="tooltip" id="refresh-all"></div>
+  <div>
+    A simple web dashboard to monitor your server.
+  </div>
+</div>
+<div id="widgets" class="">
+
+<div class="row">
+  <%= render :partial => 'general_info' %>
+  <%= render :partial => 'load_average' %>
+  <div class="span5"><%= render :partial => 'ram' %></div>
+</div>
+<!-- ./row -->
+
+<div class="row">
+  <div class="span6">
+    <div id="disk-usage-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-list"></i>
+
+        <h3>
+          Disk Usage
+        </h3>
+
+        <div id="refresh-df" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="df_dashboard" class="table table-hover table-condensed table-bordered">
+          <%= disk_usage %>
+        </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>  <%= render :partial => 'softwares' %>
+</div>
+<!--./row -->
+
+<div class="row">
+  <div class="span3">
+    <div id="ip-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-monitor"></i>
+
+        <h3>
+          IP
+        </h3>
+
+        <div id="refresh-ip" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="ip_dashboard" class="table table-hover table-condensed table-bordered">
+          <%= ips %>
+        </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span -->
+  <div class="span3">
+    <div id="internet-speed-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-monitor"></i>
+
+        <h3>
+          Internet Speed
+        </h3>
+
+        <div id="refresh-ispeed" class="btn js-refresh-info"><span class="icon-refresh"></span></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+
+        <div style="padding:0px; text-align: center;">
+          <i class="icon-download" style="font-size:18px;"></i>
+          <span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate-downstream">0</span>
+          <span class="lead">Mbps</span>
+        </div>
+        <div style="padding:0px; text-align: center;">
+          <i class="icon-upload" style="font-size:18px;"></i>
+          <span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate-upstream">0</span>
+          <span class="lead">Mbps</span>
+        </div>
+
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span -->
+</div>
+<!-- ./row -->
+
+<div class="row">
+  <div class="span4">
+    <div id="netstat-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-dashboard"></i>
+
+        <h3>
+          Network Statistics
+        </h3>
+
+        <div id="refresh-netstat" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <div class="widget-content">
+        <table id="netstat_dashboard" class="table table-hover table-condensed table-bordered">
+          <%= network_stats %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="span4">
+    <div id="ping-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-exchange"></i>
+
+        <h3>
+          Ping
+        </h3>
+
+        <div id="refresh-ping" class="btn js-refresh-info"><span class="icon-refresh"></span></div>
+      </div>
+      <div class="widget-content">
+        <table id="ping_dashboard" class="table table-hover table-condensed table-bordered">
+          <%= pingo %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="span4">
+    <div id="bandwidth-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-exchange"></i>
+
+        <h3>
+          Bandwidth
+        </h3>
+
+        <div id="refresh-bandwidth" class="btn js-refresh-info"><span class="icon-refresh"></span></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <div style="padding:10px;text-align:center;">
+          RX: <span class="lead odometer" style="margin-top:11px;" id="bw-rx"><%= bandwidth('rx')%></span>&nbsp;&nbsp;|&nbsp;&nbsp; TX:
+          <span class="lead odometer" style="margin-top:11px;" id="bw-tx"><%= bandwidth('tx')%></span>
+        </div>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span -->
+</div>
+<!--./row -->
+
+<div class="row">
+  <div class="span4">
+    <div id="users-widget" class="widget widget-table action-table">
+      <div class="widget-header">
+        <i class="icon-group"></i>
+
+        <h3>
+          Users
+        </h3>
+
+        <div id="refresh-users" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="users_dashboard" class="table table-hover table-bordered table-condensed">
+          <%= users %>
+        </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span6 -->
+  <div class="span4">
+    <div id="online-widget" class="widget widget-table action-table">
+      <div class="widget-header">
+        <i class="icon-group"></i>
+
+        <h3>
+          Online
+        </h3>
+
+        <div id="refresh-online" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="online_dashboard" class="table table-hover table-bordered table-condensed">
+          <%= online_users %>
+        </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span6 -->
+  <div class="span4">
+    <div id="lastlog-widget" class="widget widget-table action-table">
+      <div class="widget-header">
+        <i class="icon-group"></i>
+
+        <h3>
+          Last Login
+        </h3>
+
+        <div id="refresh-lastlog" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="lastlog_dashboard" class="table table-hover table-bordered table-condensed">
+          <%= logins %>
+        </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span6 -->
+</div>
+<!--./row -->
+
+<div class="row">
+  <%= render :partial => 'processes' %>
+</div>
+<!-- ./row -->
+
+<div class="row">
+  <div class="span12">
+    <div id="swap-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-dashboard"></i>
+
+        <h3>
+          Swap Usage
+        </h3>
+
+        <div id="refresh-swap" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="swap_dashboard" class="table table-hover table-condensed table-bordered">
+          <%= swap_usage %>
+        </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span -->
+</div>
+<!-- ./row -->
+
+
+</div>
+<!-- #/widgets -->
+</div>
+</div>
+<!-- /main-inner -->
+</div><!-- /main -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          Original Author: <a href="http://github.com/afaqurk">Afaq Tariq</a>.
+        </div>
+        <!-- /span12 -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /footer-inner -->
+</div><!-- /footer -->

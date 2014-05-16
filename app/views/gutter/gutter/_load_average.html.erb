@@ -1,0 +1,38 @@
+<div class="span4">
+  <div id="load-average-widget" class="widget">
+    <div class="widget-header">
+      <i class="icon-laptop"></i>
+
+      <h3>
+        Load average
+      </h3>
+
+      <div id="refresh-cpu" class="btn icon-refresh js-refresh-info"></div>
+    </div>
+    <!-- /widget-header -->
+    <div class="widget-content">
+      <div style="text-align:center;">
+        <b>Number of cores:</b> <span class="lead" id="core-number"><%= number_of_cores %></span>
+      </div>
+      <div class="cf big_stats">
+        <div class="stat">
+          <i class="icon-#">1 min&nbsp;</i> <span class="value odometer" id="cpu-1min-per"></span> %<br>
+          <span class="value" id="cpu-1min"><%= one_minute %></span>
+        </div>
+        <!-- .stat -->
+        <div class="stat">
+          <i class="icon-#">5 min&nbsp;</i> <span class="value odometer" id="cpu-5min-per"></span> %<br>
+          <span class="value" id="cpu-5min"><%= five_minute %></span>
+        </div>
+        <!-- .stat -->
+        <div class="stat">
+          <i class="icon-#">15 min&nbsp;</i> <span class="value odometer" id="cpu-15min-per"></span> %<br>
+          <span class="value" id="cpu-15min"><%= fiften_minute %></span>
+        </div>
+        <!-- .stat -->
+      </div>
+    </div>
+    <!-- /widget-content -->
+  </div>
+  <!-- /widget -->
+</div>

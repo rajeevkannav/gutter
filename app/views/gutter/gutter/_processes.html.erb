@@ -1,0 +1,25 @@
+<div class="span12">
+  <div id="process-widget" class="widget widget-table">
+    <div class="widget-header">
+      <i class="icon-dashboard"></i>
+
+      <h3>
+        Processes
+      </h3>
+
+      <div id="refresh-ps" class="btn icon-refresh js-refresh-info"></div>
+      <div class="pull-right">
+        <input type="text" id="filter-ps" class="widget-search" placeholder="search...">
+      </div>
+    </div>
+    <!-- /widget-header -->
+    <div class="widget-content">
+      <table id="ps_dashboard" class="table table-hover table-condensed table-bordered">
+        <%= ps %>
+      </table>
+    </div>
+    <!-- /widget-content -->
+  </div>
+  <!-- /widget -->
+</div>
+<!-- /span -->
