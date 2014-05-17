@@ -24,9 +24,6 @@
 <%= yield %>
 <!-- Javascript-->
 <!-- Placed at the end of the document so the pages load faster -->
-<% ['jquery.js', 'jquery-ui.min.js', 'bootstrap.js', 'jquery.dataTables.min.js', 'odometer.js', 'dashboard.js', 'base.js'].each do |js| %>
-    <%= javascript_include_tag "gutter/#{js}" %>
-<% end %>
 
 </body>
 </html>

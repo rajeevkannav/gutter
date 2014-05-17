@@ -12,9 +12,112 @@
 <div id="widgets" class="">
 
 <div class="row">
-  <%= render :partial => 'general_info' %>
-  <%= render :partial => 'load_average' %>
-  <div class="span5"><%= render :partial => 'ram' %></div>
+  <div class="span3">
+    <div id="general-info-widget" class="widget widget-table action-table">
+      <div class="widget-header">
+        <i class="icon-info-sign"></i>
+
+        <h3>
+          General Info
+        </h3>
+
+        <div id="refresh-os" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <div class="general-info-item">
+          <span class="general-title">OS</span>
+          <span class="general-data" id="os-info"></span>
+        </div>
+        <div class="general-info-item">
+          <span class="general-title">Uptime</span>
+          <span id="os-uptime"></span>
+        </div>
+        <div class="general-info-item">
+          <span class="general-title">Server Time</span>
+          <span id="os-time"> </span>
+        </div>
+        <div class="general-info-item">
+          <span class="general-title">Hostname</span>
+          <span id="os-hostname"></span>
+        </div>
+      </div>
+    </div>
+    <!-- /widget -->
+  </div>
+  <div class="span4">
+    <div id="load-average-widget" class="widget">
+      <div class="widget-header">
+        <i class="icon-laptop"></i>
+
+        <h3>
+          Load average
+        </h3>
+
+        <div id="refresh-cpu" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <div style="text-align:center;">
+          <b>Number of cores:</b> <span class="lead" id="core-number"></span>
+        </div>
+        <div class="cf big_stats">
+          <div class="stat">
+            <i class="icon-#">1 min&nbsp;</i> <span class="value odometer" id="cpu-1min-per"></span> %<br>
+            <span class="value" id="cpu-1min"> </span>
+          </div>
+          <!-- .stat -->
+          <div class="stat">
+            <i class="icon-#">5 min&nbsp;</i> <span class="value odometer" id="cpu-5min-per"></span> %<br>
+            <span class="value" id="cpu-5min"> </span>
+          </div>
+          <!-- .stat -->
+          <div class="stat">
+            <i class="icon-#">15 min&nbsp;</i> <span class="value odometer" id="cpu-15min-per"></span> %<br>
+            <span class="value" id="cpu-15min"></span>
+          </div>
+          <!-- .stat -->
+        </div>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>  <div class="span5">
+    <div id="ram-widget" class="widget widget-nopad">
+      <div class="widget-header">
+        <i class="icon-list-alt"></i>
+
+        <h3>
+          RAM
+        </h3>
+
+        <div id="refresh-ram" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <div class="big-stats-container">
+          <div class="widget-content">
+            <div class="cf big_stats">
+              <div class="stat">
+                <i class="icon-#">Total&nbsp;</i> <span class="value odometer" id="ram-total"></span> MB
+              </div>
+              <!-- .stat -->
+              <div class="stat">
+                <i class="icon-#">Used&nbsp;</i> <span class="value odometer" id="ram-used"></span> MB<br>
+                <span class="value odometer" id="ram-used-per"></span> %
+              </div>
+              <!-- .stat -->
+              <div class="stat">
+                <i class="icon-#">Free&nbsp;</i> <span class="value odometer" id="ram-free"></span> MB<br>
+                <span class="value odometer" id="ram-free-per"></span> %
+              </div>
+              <!-- .stat -->
+            </div>
+          </div>
+          <!-- /widget-content -->
+        </div>
+      </div>
+    </div>  </div>
 </div>
 <!-- ./row -->
 
@@ -32,14 +135,33 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="df_dashboard" class="table table-hover table-condensed table-bordered">
-          <%= disk_usage %>
-        </table>
+        <table id="df_dashboard" class="table table-hover table-condensed table-bordered"> </table>
       </div>
       <!-- /widget-content -->
     </div>
     <!-- /widget -->
-  </div>  <%= render :partial => 'softwares' %>
+  </div>
+  <div class="span6">
+    <div id="software-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-list"></i>
+
+        <h3>
+          Software
+        </h3>
+
+        <div id="refresh-whereis" class="btn icon-refresh js-refresh-info"></div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="whereis_dashboard" class="table table-hover table-condensed table-bordered"> </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span -->
+
 </div>
 <!--./row -->
 
@@ -113,9 +235,7 @@
         <div id="refresh-netstat" class="btn icon-refresh js-refresh-info"></div>
       </div>
       <div class="widget-content">
-        <table id="netstat_dashboard" class="table table-hover table-condensed table-bordered">
-          <%= network_stats %>
-        </table>
+        <table id="netstat_dashboard" class="table table-hover table-condensed table-bordered"></table>
       </div>
     </div>
   </div>
@@ -131,9 +251,7 @@
         <div id="refresh-ping" class="btn js-refresh-info"><span class="icon-refresh"></span></div>
       </div>
       <div class="widget-content">
-        <table id="ping_dashboard" class="table table-hover table-condensed table-bordered">
-          <%= pingo %>
-        </table>
+        <table id="ping_dashboard" class="table table-hover table-condensed table-bordered"></table>
       </div>
     </div>
   </div>
@@ -151,8 +269,9 @@
       <!-- /widget-header -->
       <div class="widget-content">
         <div style="padding:10px;text-align:center;">
-          RX: <span class="lead odometer" style="margin-top:11px;" id="bw-rx"><%= bandwidth('rx')%></span>&nbsp;&nbsp;|&nbsp;&nbsp; TX:
-          <span class="lead odometer" style="margin-top:11px;" id="bw-tx"><%= bandwidth('tx')%></span>
+          RX: <span class="lead odometer" style="margin-top:11px;" id="bw-rx"><%= bandwidth('rx') %></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+          TX:
+          <span class="lead odometer" style="margin-top:11px;" id="bw-tx"><%= bandwidth('tx') %></span>
         </div>
       </div>
       <!-- /widget-content -->
@@ -177,9 +296,7 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="users_dashboard" class="table table-hover table-bordered table-condensed">
-          <%= users %>
-        </table>
+        <table id="users_dashboard" class="table table-hover table-bordered table-condensed"></table>
       </div>
       <!-- /widget-content -->
     </div>
@@ -199,9 +316,7 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="online_dashboard" class="table table-hover table-bordered table-condensed">
-          <%= online_users %>
-        </table>
+        <table id="online_dashboard" class="table table-hover table-bordered table-condensed"> </table>
       </div>
       <!-- /widget-content -->
     </div>
@@ -221,9 +336,7 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="lastlog_dashboard" class="table table-hover table-bordered table-condensed">
-          <%= logins %>
-        </table>
+        <table id="lastlog_dashboard" class="table table-hover table-bordered table-condensed"></table>
       </div>
       <!-- /widget-content -->
     </div>
@@ -252,9 +365,7 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="swap_dashboard" class="table table-hover table-condensed table-bordered">
-          <%= swap_usage %>
-        </table>
+        <table id="swap_dashboard" class="table table-hover table-condensed table-bordered"></table>
       </div>
       <!-- /widget-content -->
     </div>

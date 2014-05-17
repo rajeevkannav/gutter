@@ -1,7 +1,7 @@
 // Gets data from provided url and updates DOM element.
 function generate_os_data(url, element) {
     $.get(url, function (data) {
-        $(element).text(data);
+        $(element).text(data[0]);
     }, "json");
 }
 
@@ -105,25 +105,16 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 var dashboard = {};
 
 dashboard.getPs = function () {
-    $.get("sh/ps.php", function (data) {
+    $.get('/gutter/fetch-data/ps', function (data) {
         destroy_dataTable("ps_dashboard");
         $("#filter-ps").val("").off("keyup");
-
+        _head = data.reverse().pop()
+        data.reverse();
         var psTable = $("#ps_dashboard").dataTable({
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
             aaData: data,
-            aoColumns: [
-                { sTitle: "USER" },
-                { sTitle: "PID" },
-                { sTitle: "%CPU" },
-                { sTitle: "%MEM" },
-                { sTitle: "VSZ" },
-                { sTitle: "RSS" },
-                { sTitle: "TTY" },
-                { sTitle: "STAT" },
-                { sTitle: "START" },
-                { sTitle: "TIME" },
-                { sTitle: "COMMAND" }
-            ],
             bPaginate: true,
             sPaginationType: "full_numbers",
             bFilter: true,
@@ -139,15 +130,16 @@ dashboard.getPs = function () {
 }
 
 dashboard.getNetStat = function () {
-    $.get("sh/netstat.php", function (data) {
+    $.get('/gutter/fetch-data/netstats', function (data) {
         destroy_dataTable("netstat_dashboard");
 
+        _head = data.reverse().pop()
+        data.reverse();
         $("#netstat_dashboard").dataTable({
             aaData: data,
-            aoColumns: [
-                { sTitle: "Number of Connections" },
-                { sTitle: "IP Address" }
-            ],
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
             aaSorting: [
                 [0, "desc"]
             ],
@@ -164,16 +156,17 @@ dashboard.getNetStat = function () {
 
 
 dashboard.getUsers = function () {
-    $.get("sh/users.php", function (data) {
+    $.get('/gutter/fetch-data/users', function (data) {
         destroy_dataTable("users_dashboard");
+
+        _head = data.reverse().pop()
+        data.reverse();
 
         $("#users_dashboard").dataTable({
             aaData: data,
-            aoColumns: [
-                { sTitle: "Type" },
-                { sTitle: "User" },
-                { sTitle: "Home" }
-            ],
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
             aaSorting: [
                 [0, "desc"]
             ],
@@ -189,17 +182,17 @@ dashboard.getUsers = function () {
 }
 
 dashboard.getOnline = function () {
-    $.get("sh/online.php", function (data) {
+    $.get('/gutter/fetch-data/online', function (data) {
         destroy_dataTable("online_dashboard");
+
+        _head = data.reverse().pop()
+        data.reverse();
 
         $("#online_dashboard").dataTable({
             aaData: data,
-            aoColumns: [
-                { sTitle: "Who" },
-                { sTitle: "From" },
-                { sTitle: "Login At" },
-                { sTitle: "Idle" }
-            ],
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
             aaSorting: [
                 [0, "desc"]
             ],
@@ -215,16 +208,16 @@ dashboard.getOnline = function () {
 }
 
 dashboard.getLastLog = function () {
-    $.get("sh/lastlog.php", function (data) {
+    $.get('/gutter/fetch-data/last_login', function (data) {
         destroy_dataTable("lastlog_dashboard");
+        _head = data.reverse().pop()
+        data.reverse();
 
         $("#lastlog_dashboard").dataTable({
             aaData: data,
-            aoColumns: [
-                { sTitle: "Who" },
-                { sTitle: "From" },
-                { sTitle: "When" },
-            ],
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
             aaSorting: [
                 [2, "desc"]
             ],
@@ -240,7 +233,7 @@ dashboard.getLastLog = function () {
 }
 
 dashboard.getRam = function () {
-    $.get("sh/mem.php", function (data) {
+    $.get('/gutter/fetch-data/ram', function (data) {
         var ram_total = data[1];
         var ram_used = Math.round((data[2] / ram_total) * 100);
         var ram_free = Math.round((data[3] / ram_total) * 100);
@@ -255,25 +248,21 @@ dashboard.getRam = function () {
 }
 
 dashboard.getDf = function () {
-    $.get("sh/df.php", function (data) {
+    $.get('/gutter/fetch-data/df', function (data) {
         var table = $("#df_dashboard");
         var ex = document.getElementById("df_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
             table.hide().dataTable().fnClearTable();
             table.dataTable().fnDestroy();
         }
-
+        _head = data.reverse().pop()
+        data.reverse();
         table.dataTable({
             aaData: data,
-            aoColumns: [
-                { sTitle: "Filesystem" },
-                { sTitle: "Size", sType: "file-size" },
-                { sTitle: "Used", sType: "file-size" },
-                { sTitle: "Avail", sType: "file-size" },
-                { sTitle: "Use%", sType: "percent" },
-                { sTitle: "Mounted" }
-            ],
-	    iDisplayLength: 5,
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
+            iDisplayLength: 5,
             bPaginate: true,
             bFilter: false,
             bAutoWidth: true,
@@ -283,7 +272,7 @@ dashboard.getDf = function () {
 }
 
 dashboard.getWhereIs = function () {
-    $.get("sh/where.php", function (data) {
+    $.get('/gutter/fetch-data/whereis', function (data) {
         var table = $("#whereis_dashboard");
         var ex = document.getElementById("whereis_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
@@ -291,12 +280,13 @@ dashboard.getWhereIs = function () {
             table.dataTable().fnDestroy();
         }
 
+        _head = data.reverse().pop()
+        data.reverse();
         table.dataTable({
             aaData: data,
-            aoColumns: [
-                { sTitle: "Software" },
-                { sTitle: "Installation" }
-            ],
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
             bPaginate: true,
             iDisplayLength: 6,
             bFilter: false,
@@ -308,12 +298,12 @@ dashboard.getWhereIs = function () {
         }).fadeIn();
     }, "json");
 }
-
+// General Info Area
 dashboard.getOs = function () {
-    generate_os_data("sh/issue.php", "#os-info");
-    generate_os_data("sh/hostname.php", "#os-hostname");
-    generate_os_data("sh/time.php", "#os-time");
-    generate_os_data("sh/uptime.php", "#os-uptime");
+    generate_os_data('/gutter/fetch-data/issue', "#os-info");
+    generate_os_data('/gutter/fetch-data/hostname', "#os-hostname");
+    generate_os_data('/gutter/fetch-data/time', "#os-time");
+    generate_os_data('/gutter/fetch-data/uptime', "#os-uptime");
 }
 
 dashboard.getIp = function () {
@@ -340,17 +330,18 @@ dashboard.getPing = function () {
     refreshIcon.addClass('icon-spin');
 
     $.ajax({
-        url: 'sh/ping.php',
+        url: '/gutter/fetch-data/ping',
         cache: false,
         success: function (data) {
             destroy_dataTable("ping_dashboard");
+            _head = data.reverse().pop()
+            data.reverse();
 
             $("#ping_dashboard").dataTable({
                 aaData: data,
-                aoColumns: [
-                    { sTitle: "Host" },
-                    { sTitle: "Time (in ms)" }
-                ],
+                aoColumns: $.map(_head, function (element, index) {
+                    return {sTitle: element}
+                }),
                 aaSorting: [
                     [0, "desc"]
                 ],
@@ -362,7 +353,7 @@ dashboard.getPing = function () {
                 bInfo: false
             }).fadeIn();
         },
-        complete: function() {
+        complete: function () {
             refreshIcon.removeClass('icon-spin');
         }
     });
@@ -377,14 +368,14 @@ dashboard.getIspeed = function () {
     // 1 = MB
     var AS = 0;
     var power = AS + 1;
-    var result = { 'upstream' :0, 'downstream':0};
+    var result = { 'upstream': 0, 'downstream': 0};
 
     refreshIcon.addClass('icon-spin');
 
     $.ajax({
         url: 'sh/speed.php',
         cache: false,
-        success: function(data) {
+        success: function (data) {
             // round the speed (float to int);
             // dependent on value of AS, calculate speed in MB or KB ps
             result['upstream'] = Math.floor((data['upstream'] / (Math.pow(1024, power))));
@@ -393,7 +384,7 @@ dashboard.getIspeed = function () {
             rateUpstream.text(result['upstream']);
             rateDownstream.text(result['downstream']);
         },
-        complete: function() {
+        complete: function () {
             refreshIcon.removeClass('icon-spin');
         }
     });
@@ -406,7 +397,7 @@ dashboard.getIspeed = function () {
 }
 
 dashboard.getLoadAverage = function () {
-    $.get("sh/loadavg.php", function (data) {
+    $.get('/gutter/fetch-data/load_average', function (data) {
         $("#cpu-1min").text(data[0][0]);
         $("#cpu-5min").text(data[1][0]);
         $("#cpu-15min").text(data[2][0]);
@@ -414,7 +405,7 @@ dashboard.getLoadAverage = function () {
         $("#cpu-5min-per").text(data[1][1]);
         $("#cpu-15min-per").text(data[2][1]);
     }, "json");
-    generate_os_data("sh/numberofcores.php", "#core-number");
+    generate_os_data('/gutter/fetch-data/numberofcores', "#core-number");
 }
 
 dashboard.getDnsmasqLeases = function () {
@@ -454,7 +445,7 @@ dashboard.getBandwidth = function () {
             $('#bw-tx').text(data.tx);
             $('#bw-rx').text(data.rx);
         },
-        complete: function() {
+        complete: function () {
             refreshIcon.removeClass('icon-spin');
         }
     });
@@ -462,24 +453,22 @@ dashboard.getBandwidth = function () {
 }
 
 dashboard.getSwaps = function () {
-    $.get("sh/swap.php", function (data) {
+    $.get('/gutter/fetch-data/swap', function (data) {
         var table = $("#swap_dashboard");
         var ex = document.getElementById("swap_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
             table.hide().dataTable().fnClearTable();
             table.dataTable().fnDestroy();
         }
+        _head = data.reverse().pop()
+        data.reverse();
 
         table.dataTable({
             aaData: data,
-            aoColumns: [
-                { sTitle: "Filename" },
-                { sTitle: "Type"},
-                { sTitle: "Size", sType: "file-size" },
-                { sTitle: "Used", sType: "file-size" },
-                { sTitle: "Priority"}
-            ],
-	    iDisplayLength: 5,
+            aoColumns: $.map(_head, function (element, index) {
+                return {sTitle: element}
+            }),
+            iDisplayLength: 5,
             bPaginate: true,
             bFilter: false,
             bAutoWidth: true,
@@ -505,19 +494,19 @@ dashboard.getAll = function () {
 dashboard.fnMap = {
     all: dashboard.getAll,
     ram: dashboard.getRam,
+    whereis: dashboard.getWhereIs,
     ps: dashboard.getPs,
     df: dashboard.getDf,
     os: dashboard.getOs,
-    users: dashboard.getUsers,
-    online: dashboard.getOnline,
-    lastlog: dashboard.getLastLog,
-    whereis: dashboard.getWhereIs,
-    ip: dashboard.getIp,
-    ispeed: dashboard.getIspeed,
-    cpu: dashboard.getLoadAverage,
-    netstat: dashboard.getNetStat,
-    dnsmasqleases: dashboard.getDnsmasqLeases,
-    bandwidth: dashboard.getBandwidth,
     ping: dashboard.getPing,
-    swap: dashboard.getSwaps
+    online: dashboard.getOnline,
+    netstat: dashboard.getNetStat,
+    users: dashboard.getUsers,
+    swap: dashboard.getSwaps,
+    cpu: dashboard.getLoadAverage,
+    lastlog: dashboard.getLastLog
+//    ip: dashboard.getIp,
+//    ispeed: dashboard.getIspeed,
+//    dnsmasqleases: dashboard.getDnsmasqLeases,
+//    bandwidth: dashboard.getBandwidth,
 };
