@@ -492,7 +492,7 @@ dashboard.getAll = function () {
 }
 
 dashboard.fnMap = {
-    all: dashboard.getAll,
+//    all: dashboard.getAll,
     ram: dashboard.getRam,
     whereis: dashboard.getWhereIs,
     ps: dashboard.getPs,
@@ -507,6 +507,6 @@ dashboard.fnMap = {
     bandwidth: dashboard.getBandwidth,
     lastlog: dashboard.getLastLog,
     ip: dashboard.getIp
-//    ispeed: dashboard.getIspeed,
 //    dnsmasqleases: dashboard.getDnsmasqLeases,
+//    ispeed: dashboard.getIspeed,
 };

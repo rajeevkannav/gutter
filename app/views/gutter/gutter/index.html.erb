@@ -1,5 +1,75 @@
-<%= render :partial => 'navbar' %>
-<%= render :partial => 'subnavbar' %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="./">Gutter-DashBoard</a>
+
+      <div class="nav-collapse">
+
+        <ul class="nav pull-right">
+          <li>
+            <a target="_blank" href="http://github.com/afaqurk/linux-dash">
+              <i class="lead icon-github-sign"></i>
+              <span class="lead">Contribute on GitHub</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+
+    <a class="btn btn-navbar btn-info visible-phone" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+
+    <div class="container nav-collapse">
+
+      <ul class="mainnav">
+        <li>
+          <a class="js-smoothscroll" href="#refresh-os"><i class="icon-dashboard"></i><span>General</span></a>
+        </li>
+        <li>
+          <a class="js-smoothscroll" href="#refresh-df"><i class="icon-list-alt"></i><span>Disk</span></a>
+        </li>
+        <li>
+          <a class="js-smoothscroll" href="#refresh-ps"><i class="icon-list-alt"></i><span>CPU</span></a>
+        </li>
+        <li>
+          <a class="js-smoothscroll" href="#refresh-ram"><i class="icon-list-alt"></i><span>RAM</span></a>
+        </li>
+        <li>
+          <a class="js-smoothscroll" href="#refresh-users"><i class="icon-group"></i><span>Users</span></a>
+        </li>
+        <li>
+          <a class="js-smoothscroll" href="#refresh-ispeed"><i class="icon-exchange"></i><span>Network</span></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i id="closed-widget-count">0</i>
+            <span> Closed Widgets <i class="icon-caret-down"></i></span>
+          </a>
+          <ul class="dropdown-menu" id="closed-widget-list">
+            <li id="close-all-widgets">
+              <a> <i class="icon-remove lead pull-left"></i> Close All Widgets</a>
+            </li>
+            <li id="open-all-widgets">
+              <a> <i class="icon-plus lead pull-left"></i> Open All Widgets</a>
+            </li>
+            <li class="">
+              <hr>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /subnavbar-inner -->
+</div><!-- /subnavbar -->
 <div class="main">
 <div class="main-inner">
 <div class="container">
@@ -186,36 +256,36 @@
     <!-- /widget -->
   </div>
   <!-- /span -->
-  <div class="span3">
-    <div id="internet-speed-widget" class="widget widget-table">
-      <div class="widget-header">
-        <i class="icon-monitor"></i>
+  <!--<div class="span3">-->
+    <!--<div id="internet-speed-widget" class="widget widget-table">-->
+      <!--<div class="widget-header">-->
+        <!--<i class="icon-monitor"></i>-->
 
-        <h3>
-          Internet Speed
-        </h3>
+        <!--<h3>-->
+          <!--Internet Speed-->
+        <!--</h3>-->
 
-        <div id="refresh-ispeed" class="btn js-refresh-info"><span class="icon-refresh"></span></div>
-      </div>
-      <!-- /widget-header -->
-      <div class="widget-content">
+        <!--<div id="refresh-ispeed" class="btn js-refresh-info"><span class="icon-refresh"></span></div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /widget-header &ndash;&gt;-->
+      <!--<div class="widget-content">-->
 
-        <div style="padding:0px; text-align: center;">
-          <i class="icon-download" style="font-size:18px;"></i>
-          <span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate-downstream">0</span>
-          <span class="lead">Mbps</span>
-        </div>
-        <div style="padding:0px; text-align: center;">
-          <i class="icon-upload" style="font-size:18px;"></i>
-          <span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate-upstream">0</span>
-          <span class="lead">Mbps</span>
-        </div>
+        <!--<div style="padding:0px; text-align: center;">-->
+          <!--<i class="icon-download" style="font-size:18px;"></i>-->
+          <!--<span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate-downstream">0</span>-->
+          <!--<span class="lead">Mbps</span>-->
+        <!--</div>-->
+        <!--<div style="padding:0px; text-align: center;">-->
+          <!--<i class="icon-upload" style="font-size:18px;"></i>-->
+          <!--<span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate-upstream">0</span>-->
+          <!--<span class="lead">Mbps</span>-->
+        <!--</div>-->
 
-      </div>
-      <!-- /widget-content -->
-    </div>
+      <!--</div>-->
+      <!--&lt;!&ndash; /widget-content &ndash;&gt;-->
+    <!--</div>-->
     <!-- /widget -->
-  </div>
+  <!--</div>-->
   <!-- /span -->
 </div>
 <!-- ./row -->
@@ -345,7 +415,30 @@
 <!--./row -->
 
 <div class="row">
-  <%= render :partial => 'processes' %>
+  <div class="span12">
+    <div id="process-widget" class="widget widget-table">
+      <div class="widget-header">
+        <i class="icon-dashboard"></i>
+
+        <h3>
+          Processes
+        </h3>
+
+        <div id="refresh-ps" class="btn icon-refresh js-refresh-info"></div>
+        <div class="pull-right">
+          <input type="text" id="filter-ps" class="widget-search" placeholder="search...">
+        </div>
+      </div>
+      <!-- /widget-header -->
+      <div class="widget-content">
+        <table id="ps_dashboard" class="table table-hover table-condensed table-bordered">
+        </table>
+      </div>
+      <!-- /widget-content -->
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /span -->
 </div>
 <!-- ./row -->
 

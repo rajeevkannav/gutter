@@ -22,10 +22,10 @@ module Utilities
 
   def packages_content
     html = "Software|Installation\n"
-    %w(ruby php node mysql python apache2 nginx openssl vsftpd make).each do |pkg|
+    %w(ruby php node mysql python apache2 nginx openssl git make).each do |pkg|
       html += "#{pkg}|#{`whereis #{pkg} | awk -F: '{print $2$3$4$5}'`}"
     end
-    html #Fixme
+    html
   end
 
   def whereis
@@ -105,7 +105,7 @@ module GeneralInformation
     output = ''
     output += "Internal ip (eth0) | #{`for interface in eth0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}\n"
     output += "Internal ip (wlan0) | #{`for interface in wlan0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}"
-    #output += "External ip | #{`GET http://ipecho.net/plain`}" #Fixme
+    output += "External ip | #{`GET http://ip-api.com/json/?fields=query | awk -F: '{print $2}' | awk -F'"' '{print $1 $2}'`.chomp}"
     jsonist(output)
   end
 
@@ -113,6 +113,7 @@ module GeneralInformation
 end
 
 module Bandwidth
+
   def rx
     _start = `cat /sys/class/net/eth0/statistics/rx_bytes`.chomp.to_i
     sleep(2)
@@ -139,7 +140,6 @@ module Gutter
     include GeneralInformation
     include Utilities
     include MemoryUsage
-    include InternetProtocolAddress
     include Bandwidth
   end
 end
