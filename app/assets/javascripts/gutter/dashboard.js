@@ -307,7 +307,7 @@ dashboard.getOs = function () {
 }
 
 dashboard.getIp = function () {
-    $.get("sh/ip.php", function (data) {
+    $.get('/gutter/fetch-data/ip', function (data) {
         destroy_dataTable("ip_dashboard");
         $("#ip_dashboard").dataTable({
             aaData: data,
@@ -438,7 +438,7 @@ dashboard.getBandwidth = function () {
     refreshIcon.addClass('icon-spin');
 
     $.ajax({
-        url: 'sh/bandwidth.php',
+        url: '/gutter/fetch-data/bandwidth',
         cache: false,
         dataType: 'json',
         success: function (data) {
@@ -504,9 +504,9 @@ dashboard.fnMap = {
     users: dashboard.getUsers,
     swap: dashboard.getSwaps,
     cpu: dashboard.getLoadAverage,
-    lastlog: dashboard.getLastLog
-//    ip: dashboard.getIp,
+    bandwidth: dashboard.getBandwidth,
+    lastlog: dashboard.getLastLog,
+    ip: dashboard.getIp
 //    ispeed: dashboard.getIspeed,
 //    dnsmasqleases: dashboard.getDnsmasqLeases,
-//    bandwidth: dashboard.getBandwidth,
 };

@@ -20,25 +20,12 @@ end
 
 module Utilities
 
-  Utils = {
-      ruby: {version: '-v'},
-      php: {version: '--version'},
-      node: {version: '-v'},
-      mysql: {version: '--version'},
-      python: {version: '--version'},
-      apache2: {version: '--version'},
-      nginx: {version: '--version'},
-      openssl: {version: 'version'},
-      vsftpd: {version: '--version'},
-      make: {version: '-v'}
-  }
-
   def packages_content
     html = "Software|Installation\n"
-    Utils.each do |package_name|
-      html += "#{package_name.first.to_s}|#{`whereis #{package_name.first.to_s}`}\n"
+    %w(ruby php node mysql python apache2 nginx openssl vsftpd make).each do |pkg|
+      html += "#{pkg}|#{`whereis #{pkg} | awk -F: '{print $2$3$4$5}'`}"
     end
-    html
+    html #Fixme
   end
 
   def whereis
@@ -67,7 +54,7 @@ module GeneralInformation
   end
 
   def numberofcores
-    [`LC_ALL=C /bin/grep -c ^processor /proc/cpuinfo`].to_json
+    [`LC_ALL=C /bin/grep -c ^processor /proc/cpuinfo`.chomp].to_json
   end
 
   def ps
@@ -85,22 +72,6 @@ module GeneralInformation
         [`/bin/cat /proc/loadavg | /usr/bin/awk '{print $3}'`, `/bin/cat /proc/loadavg | /usr/bin/awk '{print $3}'`]
     ]
   end
-
-  def numberofcores
-
-  end
-
-  #def load_avg_one_minute
-  #  `/bin/cat /proc/loadavg | /usr/bin/awk '{print $1}'`
-  #end
-  #
-  #def load_avg_five_minute
-  #  `/bin/cat /proc/loadavg | /usr/bin/awk '{print $2}'`
-  #end
-  #
-  #def load_avg_fiften_minute
-  #  `/bin/cat /proc/loadavg | /usr/bin/awk '{print $3}'`
-  #end
 
   def last_login
     jsonist(`/usr/bin/lastlog --time 365 | awk '{ print $1 "|" $2 "|" $3 "|" $5 "-" $6 "-" $4 " " $7 $8 " " $9}'`)
@@ -130,28 +101,36 @@ module GeneralInformation
     jsonist("Host|Time (in ms)\n#{command_output}")
   end
 
-end
-
-
-module InternetProtocolAddress
-
-  def ips
+  def ip
     output = ''
-    #output += "Internal ip (eth0) | #{`for interface in eth0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}\n"
-    #output += "Internal ip (wlan0) | #{`for interface in wlan0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}"
-    #output += "External ip | #{`GET http://ipecho.net/plain`}"
-    #raw table(output)
+    output += "Internal ip (eth0) | #{`for interface in eth0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}\n"
+    output += "Internal ip (wlan0) | #{`for interface in wlan0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}"
+    #output += "External ip | #{`GET http://ipecho.net/plain`}" #Fixme
+    jsonist(output)
   end
+
 
 end
 
 module Bandwidth
-  def bandwidth(type)
-    _start = `cat /sys/class/net/eth0/statistics/#{type}_bytes`.chomp.to_i
+  def rx
+    _start = `cat /sys/class/net/eth0/statistics/rx_bytes`.chomp.to_i
     sleep(2)
-    _end = `cat /sys/class/net/eth0/statistics/#{type}_bytes`.chomp.to_i
+    _end = `cat /sys/class/net/eth0/statistics/rx_bytes`.chomp.to_i
     (_end - _start)
   end
+
+  def tx
+    _start = `cat /sys/class/net/eth0/statistics/tx_bytes`.chomp.to_i
+    sleep(2)
+    _end = `cat /sys/class/net/eth0/statistics/tx_bytes`.chomp.to_i
+    (_end - _start)
+  end
+
+  def bandwidth
+    {rx: rx, tx: tx}.to_json
+  end
+
 end
 
 module Gutter

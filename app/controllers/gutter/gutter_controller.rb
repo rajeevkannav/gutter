@@ -8,7 +8,7 @@ module Gutter
     before_filter :whitelisting_options, only: [:fetch_data]
 
     GutterOptions = ['ps', 'issue', 'hostname', 'time', 'uptime', 'df', 'whereis', 'users', 'ping', 'online',
-                     'netstats', 'last_login', 'swap', 'ram', 'load_average', 'numberofcores']
+                     'netstats', 'last_login', 'swap', 'ram', 'load_average', 'numberofcores', 'ip', 'bandwidth']
 
     def index
     end
