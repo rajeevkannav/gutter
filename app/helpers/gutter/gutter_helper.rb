@@ -66,10 +66,12 @@ module GeneralInformation
   end
 
   def load_average
+    load_arr = `/bin/cat /proc/loadavg | /usr/bin/awk '{print $1 "|" $2 "|" $3}'`.split('|')
+    cores = `LC_ALL=C /bin/grep -c ^processor /proc/cpuinfo`.chomp.to_i
     [
-        [`/bin/cat /proc/loadavg | /usr/bin/awk '{print $1}'`, `/bin/cat /proc/loadavg | /usr/bin/awk '{print $1}'`],
-        [`/bin/cat /proc/loadavg | /usr/bin/awk '{print $2}'`, `/bin/cat /proc/loadavg | /usr/bin/awk '{print $2}'`],
-        [`/bin/cat /proc/loadavg | /usr/bin/awk '{print $3}'`, `/bin/cat /proc/loadavg | /usr/bin/awk '{print $3}'`]
+        [load_arr[0], (load_arr[0].to_f * 100)/cores],
+        [load_arr[1], (load_arr[1].to_f * 100)/cores],
+        [load_arr[2], (load_arr[2].to_f * 100)/cores]
     ]
   end
 
