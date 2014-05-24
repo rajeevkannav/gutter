@@ -234,13 +234,13 @@ dashboard.getLastLog = function () {
 
 dashboard.getRam = function () {
     $.get('/gutter/fetch-data/ram', function (data) {
-        var ram_total = data[1];
-        var ram_used = Math.round((data[2] / ram_total) * 100);
-        var ram_free = Math.round((data[3] / ram_total) * 100);
+        var ram_total = data[0];
+        var ram_used = Math.round((data[1] / ram_total) * 100);
+        var ram_free = Math.round((data[2] / ram_total) * 100);
 
         $("#ram-total").text(ram_total);
-        $("#ram-used").text(data[2]);
-        $("#ram-free").text(data[3]);
+        $("#ram-used").text(data[1]);
+        $("#ram-free").text(data[2]);
 
         $("#ram-free-per").text(ram_free);
         $("#ram-used-per").text(ram_used);

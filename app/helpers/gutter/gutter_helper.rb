@@ -10,11 +10,14 @@ end
 
 module MemoryUsage
   def ram
-    [
-        [`/usr/bin/free | awk '{ print $1 }'`.lines[1].chomp],
-        [`/usr/bin/free | awk '{ print $2 }'`.lines[1].chomp],
-        [`/usr/bin/free | awk '{ print $3 }'`.lines[1].chomp]
+    _ram = [
+        `/usr/bin/free | awk '{ print $2 }'`.lines[1].chomp,
+        `/usr/bin/free | awk '{ print $3 }'`.lines[1].chomp,
+        `/usr/bin/free | awk '{ print $4 }'`.lines[1].chomp
     ]
+    logger.info '_ram.to_json'
+    logger.info _ram.to_json
+    _ram.to_json
   end
 end
 
