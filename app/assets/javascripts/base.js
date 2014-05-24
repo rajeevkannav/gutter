@@ -6,7 +6,7 @@ $(document).ready(function () {
     keepWidgetHidden();
 
     // enable popovers
-    //     $(".pop").popover();
+//    $(".pop").popover();
 
     // activate tooltips on hover
     $("[data-toggle='tooltip']").tooltip({trigger: 'hover', placement: 'right'});

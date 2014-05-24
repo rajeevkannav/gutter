@@ -23,7 +23,7 @@ module Utilities
   def packages_content
     html = "Software|Installation\n"
     %w(ruby php node mysql python apache2 nginx openssl git make).each do |pkg|
-      html += "#{pkg}|#{`whereis #{pkg} | awk -F: '{print $2$3$4$5}'`}"
+      html += `whereis #{pkg} | awk -F: '{print $1"|"$2$3$4$5"."}'`
     end
     html
   end
@@ -69,9 +69,9 @@ module GeneralInformation
     load_arr = `/bin/cat /proc/loadavg | /usr/bin/awk '{print $1 "|" $2 "|" $3}'`.split('|')
     cores = `LC_ALL=C /bin/grep -c ^processor /proc/cpuinfo`.chomp.to_i
     [
-        [load_arr[0], (load_arr[0].to_f * 100)/cores],
-        [load_arr[1], (load_arr[1].to_f * 100)/cores],
-        [load_arr[2], (load_arr[2].to_f * 100)/cores]
+        [load_arr[0], ((load_arr[0].to_f * 100)/cores).to_i],
+        [load_arr[1], ((load_arr[1].to_f * 100)/cores).to_i],
+        [load_arr[2], ((load_arr[2].to_f * 100)/cores).to_i]
     ]
   end
 

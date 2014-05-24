@@ -492,7 +492,7 @@ dashboard.getAll = function () {
 }
 
 dashboard.fnMap = {
-//    all: dashboard.getAll,
+    all: dashboard.getAll,
     ram: dashboard.getRam,
     whereis: dashboard.getWhereIs,
     ps: dashboard.getPs,

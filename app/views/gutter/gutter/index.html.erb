@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="./">Gutter-DashBoard</a>
+      <a class="brand" href="./">linux-dash</a>
 
       <div class="nav-collapse">
 
@@ -64,6 +64,21 @@
             </li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i id="phpinfo-widget-what" class="icon-info-sign"></i>
+            <span>PHPInfo <i class="icon-caret-down"></i></span>
+          </a>
+          <ul class="dropdown-menu" id="phpinfo-widget-opt">
+            <li><a href="sh/phpinfo.php?what=-1" target="_blank"><i class="icon-info"></i> - INFO_ALL</a></li>
+            <li><a href="sh/phpinfo.php?what=1" target="_blank"><i class="icon-info"></i> - INFO_GENERAL</a></li>
+            <li><a href="sh/phpinfo.php?what=4" target="_blank"><i class="icon-info"></i> - INFO_CONFIGURATION</a></li>
+            <li><a href="sh/phpinfo.php?what=8" target="_blank"><i class="icon-info"></i> - INFO_MODULES</a></li>
+            <li><a href="sh/phpinfo.php?what=16" target="_blank"><i class="icon-info"></i> - INFO_ENVIRONMENT</a></li>
+            <li><a href="sh/phpinfo.php?what=32" target="_blank"><i class="icon-info"></i> - INFO_VARIABLES</a></li>
+            <li><a href="sh/phpinfo.php?what=2" target="_blank"><i class="icon-info"></i> - INFO_CREDITS</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
     <!-- /container -->
@@ -95,26 +110,22 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <div class="general-info-item">
-          <span class="general-title">OS</span>
-          <span class="general-data" id="os-info"></span>
-        </div>
-        <div class="general-info-item">
-          <span class="general-title">Uptime</span>
-          <span id="os-uptime"></span>
-        </div>
-        <div class="general-info-item">
-          <span class="general-title">Server Time</span>
-          <span id="os-time"> </span>
-        </div>
-        <div class="general-info-item">
-          <span class="general-title">Hostname</span>
-          <span id="os-hostname"></span>
+        <br>
+
+        <div style="text-align:center;">
+          <b>OS:</b> <span class="" id="os-info"></span><br>
+          <b>Uptime:</b> <span id="os-uptime"></span><br>
+          <b>Server Time:</b> <span class="" id="os-time"></span><br>
+          <b>Hostname:</b> <span class="" id="os-hostname"></span><br>
+          <br>
+          <br>
         </div>
       </div>
+      <!-- /widget-content -->
     </div>
     <!-- /widget -->
   </div>
+
   <div class="span4">
     <div id="load-average-widget" class="widget">
       <div class="widget-header">
@@ -129,17 +140,17 @@
       <!-- /widget-header -->
       <div class="widget-content">
         <div style="text-align:center;">
-          <b>Number of cores:</b> <span class="lead" id="core-number"></span>
+          <b>Number of cores:</b> <span class="lead" id="core-number">0</span>
         </div>
         <div class="cf big_stats">
           <div class="stat">
             <i class="icon-#">1 min&nbsp;</i> <span class="value odometer" id="cpu-1min-per"></span> %<br>
-            <span class="value" id="cpu-1min"> </span>
+            <span class="value" id="cpu-1min"></span>
           </div>
           <!-- .stat -->
           <div class="stat">
             <i class="icon-#">5 min&nbsp;</i> <span class="value odometer" id="cpu-5min-per"></span> %<br>
-            <span class="value" id="cpu-5min"> </span>
+            <span class="value" id="cpu-5min"></span>
           </div>
           <!-- .stat -->
           <div class="stat">
@@ -152,7 +163,9 @@
       <!-- /widget-content -->
     </div>
     <!-- /widget -->
-  </div>  <div class="span5">
+  </div>
+
+  <div class="span5">
     <div id="ram-widget" class="widget widget-nopad">
       <div class="widget-header">
         <i class="icon-list-alt"></i>
@@ -187,7 +200,8 @@
           <!-- /widget-content -->
         </div>
       </div>
-    </div>  </div>
+    </div>
+  </div>
 </div>
 <!-- ./row -->
 
@@ -205,7 +219,7 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="df_dashboard" class="table table-hover table-condensed table-bordered"> </table>
+        <table id="df_dashboard" class="table table-hover table-condensed table-bordered"></table>
       </div>
       <!-- /widget-content -->
     </div>
@@ -224,18 +238,37 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="whereis_dashboard" class="table table-hover table-condensed table-bordered"> </table>
+        <table id="whereis_dashboard" class="table table-hover table-condensed table-bordered"></table>
       </div>
       <!-- /widget-content -->
     </div>
     <!-- /widget -->
   </div>
   <!-- /span -->
-
 </div>
 <!--./row -->
 
 <div class="row">
+  <!--<div class="span6">-->
+    <!--<div id="dns-lease-widget" class="widget widget-table">-->
+      <!--<div class="widget-header">-->
+        <!--<i class="icon-list"></i>-->
+
+        <!--<h3>-->
+          <!--DNS Leases-->
+        <!--</h3>-->
+
+        <!--<div id="refresh-dnsmasqleases" class="btn icon-refresh js-refresh-info"></div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /widget-header &ndash;&gt;-->
+      <!--<div class="widget-content">-->
+        <!--<table id="dnsmasqleases_dashboard" class="table table-hover table-condensed table-bordered"></table>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; /widget-content &ndash;&gt;-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /widget &ndash;&gt;-->
+  <!--</div>-->
+  <!-- /span6 -->
   <div class="span3">
     <div id="ip-widget" class="widget widget-table">
       <div class="widget-header">
@@ -256,7 +289,7 @@
     <!-- /widget -->
   </div>
   <!-- /span -->
-  <!--<div class="span3">-->
+  <div class="span3">
     <!--<div id="internet-speed-widget" class="widget widget-table">-->
       <!--<div class="widget-header">-->
         <!--<i class="icon-monitor"></i>-->
@@ -265,7 +298,7 @@
           <!--Internet Speed-->
         <!--</h3>-->
 
-        <!--<div id="refresh-ispeed" class="btn js-refresh-info"><span class="icon-refresh"></span></div>-->
+        <!--<div id="refresh-ispeed" class="btn icon-refresh js-refresh-info"></div>-->
       <!--</div>-->
       <!--&lt;!&ndash; /widget-header &ndash;&gt;-->
       <!--<div class="widget-content">-->
@@ -285,7 +318,7 @@
       <!--&lt;!&ndash; /widget-content &ndash;&gt;-->
     <!--</div>-->
     <!-- /widget -->
-  <!--</div>-->
+  </div>
   <!-- /span -->
 </div>
 <!-- ./row -->
@@ -316,7 +349,7 @@
           Ping
         </h3>
 
-        <div id="refresh-ping" class="btn js-refresh-info"><span class="icon-refresh"></span></div>
+        <div id="refresh-ping" class="btn icon-refresh js-refresh-info"></div>
       </div>
       <div class="widget-content">
         <table id="ping_dashboard" class="table table-hover table-condensed table-bordered"></table>
@@ -332,13 +365,12 @@
           Bandwidth
         </h3>
 
-        <div id="refresh-bandwidth" class="btn js-refresh-info"><span class="icon-refresh"></span></div>
+        <div id="refresh-bandwidth" class="btn icon-refresh js-refresh-info"></div>
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
         <div style="padding:10px;text-align:center;">
-          RX: <span class="lead odometer" style="margin-top:11px;" id="bw-rx"></span>&nbsp;&nbsp;|&nbsp;&nbsp;
-          TX:
+          RX: <span class="lead odometer" style="margin-top:11px;" id="bw-rx">0</span>&nbsp;&nbsp;|&nbsp;&nbsp; TX:
           <span class="lead odometer" style="margin-top:11px;" id="bw-tx"></span>
         </div>
       </div>
@@ -351,7 +383,7 @@
 <!--./row -->
 
 <div class="row">
-  <div class="span4">
+  <div class="span6">
     <div id="users-widget" class="widget widget-table action-table">
       <div class="widget-header">
         <i class="icon-group"></i>
@@ -371,7 +403,7 @@
     <!-- /widget -->
   </div>
   <!-- /span6 -->
-  <div class="span4">
+  <div class="span6">
     <div id="online-widget" class="widget widget-table action-table">
       <div class="widget-header">
         <i class="icon-group"></i>
@@ -384,27 +416,7 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="online_dashboard" class="table table-hover table-bordered table-condensed"> </table>
-      </div>
-      <!-- /widget-content -->
-    </div>
-    <!-- /widget -->
-  </div>
-  <!-- /span6 -->
-  <div class="span4">
-    <div id="lastlog-widget" class="widget widget-table action-table">
-      <div class="widget-header">
-        <i class="icon-group"></i>
-
-        <h3>
-          Last Login
-        </h3>
-
-        <div id="refresh-lastlog" class="btn icon-refresh js-refresh-info"></div>
-      </div>
-      <!-- /widget-header -->
-      <div class="widget-content">
-        <table id="lastlog_dashboard" class="table table-hover table-bordered table-condensed"></table>
+        <table id="online_dashboard" class="table table-hover table-bordered table-condensed"></table>
       </div>
       <!-- /widget-content -->
     </div>
@@ -431,8 +443,7 @@
       </div>
       <!-- /widget-header -->
       <div class="widget-content">
-        <table id="ps_dashboard" class="table table-hover table-condensed table-bordered">
-        </table>
+        <table id="ps_dashboard" class="table table-hover table-condensed table-bordered"></table>
       </div>
       <!-- /widget-content -->
     </div>
@@ -441,31 +452,6 @@
   <!-- /span -->
 </div>
 <!-- ./row -->
-
-<div class="row">
-  <div class="span12">
-    <div id="swap-widget" class="widget widget-table">
-      <div class="widget-header">
-        <i class="icon-dashboard"></i>
-
-        <h3>
-          Swap Usage
-        </h3>
-
-        <div id="refresh-swap" class="btn icon-refresh js-refresh-info"></div>
-      </div>
-      <!-- /widget-header -->
-      <div class="widget-content">
-        <table id="swap_dashboard" class="table table-hover table-condensed table-bordered"></table>
-      </div>
-      <!-- /widget-content -->
-    </div>
-    <!-- /widget -->
-  </div>
-  <!-- /span -->
-</div>
-<!-- ./row -->
-
 
 </div>
 <!-- #/widgets -->
