@@ -10,14 +10,11 @@ end
 
 module MemoryUsage
   def ram
-    _ram = [
+    [
         `/usr/bin/free | awk '{ print $2 }'`.lines[1].chomp,
         `/usr/bin/free | awk '{ print $3 }'`.lines[1].chomp,
         `/usr/bin/free | awk '{ print $4 }'`.lines[1].chomp
-    ]
-    logger.info '_ram.to_json'
-    logger.info _ram.to_json
-    _ram.to_json
+    ].to_json
   end
 end
 
@@ -108,7 +105,7 @@ module GeneralInformation
     output = ''
     output += "Internal ip (eth0) | #{`for interface in eth0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}\n"
     output += "Internal ip (wlan0) | #{`for interface in wlan0; do for family in inet inet6; do /bin/ip -oneline -family $family addr show $interface | /bin/grep -v fe80 | /usr/bin/awk '{print $4}'; done; done`}"
-    output += "External ip | #{`GET http://ip-api.com/json/?fields=query | awk -F: '{print $2}' | awk -F'"' '{print $1 $2}'`.chomp}"
+    output += "External ip | #{`curl http://ip-api.com/json/?fields=query | awk -F: '{print $2}' | awk -F'"' '{print $1 $2}'`.chomp}"
     jsonist(output)
   end
 
