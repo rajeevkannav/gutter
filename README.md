@@ -1,4 +1,4 @@
-= Gutter - Linux-Ruby DashBoard
+## Gutter - Linux-Ruby DashBoard
 
 A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in the app and go!
 
@@ -33,7 +33,7 @@ A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in 
 * Modern browsers
 
 ## Credits:
-* [linux-dash](https://github.com/afaqurk/linux-dash)
+* [linux-dash](https://github.com/afaqurk/linux-dash) - [afaqurk](https://github.com/afaqurk/) Thank-you So much!
 * [Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/)
 * [Bootstrap](http://getbootstrap.com)
 * [Font Awesome](http://fontawesome.io/)
