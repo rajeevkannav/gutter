@@ -1,4 +1,4 @@
-= Gutter - RubyGem - SystemDashBoard(Linux)
+= Gutter - Linux-Ruby DashBoard
 
 A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in
 the app and go!
