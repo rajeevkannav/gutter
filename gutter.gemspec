@@ -5,19 +5,15 @@ require "gutter/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "gutter"
-  s.version     = Gutter::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Gutter."
-  s.description = "TODO: Description of Gutter."
-
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.name = 'gutter'
+  s.version = Gutter::VERSION
+  s.authors = ['Rajeev Kannav Sharma']
+  s.email = ['rajeevsharma86@gmail.com']
+  s.homepage = 'http://rajeevkannav.github.io/gutter'
+  s.summary = 'Gutter - Linux-Ruby DashBoard'
+  s.description = 'A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in the app and go!'
+  s.files = Dir["{app,config,db,lib}/**/*"] + ['LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir["test/**/*"]
-
   s.add_dependency "rails", "~> 3.2.16"
-  # s.add_dependency "jquery-rails"
-
   s.add_development_dependency "sqlite3"
 end

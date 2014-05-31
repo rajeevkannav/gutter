@@ -47,7 +47,7 @@ provide tests and documentation whenever possible. It is very unlikely that we w
 open a GitHub Pull Request with your patches and we will review your contribution and respond as quickly as possible. Keep in mind that this is an open source project, and it may take us some time to get back to you. Your patience is very much appreciated.
 
 Soon you'll be listed here:
-* [gutter-people](https://github.com/rajeevkannav/gutter/graphs/contributors) 
+* [gutter-people](https://github.com/rajeevkannav/gutter/graphs/contributors)
 
 ## Credits:
 * [linux-dash](https://github.com/afaqurk/linux-dash) - [afaqurk](https://github.com/afaqurk/) Thank-you So much!
