@@ -15,7 +15,7 @@ A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in 
 
 1. add to your `Gemfile` ->  `'gutter'`.
 2. bundle install.
-3. rails s.
+3. `rails s`
 4  Goto `http://localhost:3000/gutter`
 
 ## Support
@@ -31,6 +31,23 @@ A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in 
 * Nginx
 * Ruby
 * Modern browsers
+
+## Contributing
+
+We hope that you will consider contributing to gutter. You can contribute in many ways. For example, you might:
+
+add documentation and “how-to” articles to the README or Wiki.
+
+improve the existing application with more system specific features in gutter.
+
+When contributing to gutter, we ask that you:
+
+provide tests and documentation whenever possible. It is very unlikely that we will accept new features or functionality into Devise without the proper testing and documentation. When fixing a bug, provide a failing test case that your patch solves.
+
+open a GitHub Pull Request with your patches and we will review your contribution and respond as quickly as possible. Keep in mind that this is an open source project, and it may take us some time to get back to you. Your patience is very much appreciated.
+
+Soon you'll be listed here:
+* [gutter-people](https://github.com/rajeevkannav/gutter/graphs/contributors) 
 
 ## Credits:
 * [linux-dash](https://github.com/afaqurk/linux-dash) - [afaqurk](https://github.com/afaqurk/) Thank-you So much!
