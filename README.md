@@ -16,7 +16,9 @@ A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in 
 1. add to your `Gemfile` ->  `'gutter'`.
 2. bundle install.
 3. `rails s`
-4  Goto `http://localhost:3000/gutter`
+4. add this line to routs `mount Gutter::Engine => "/gutter"`
+5. checkout `http://localhost:3000/gutter`
+
 
 ## Support
 
