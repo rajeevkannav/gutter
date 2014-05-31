@@ -2,7 +2,7 @@
 
 A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in the app and go!
 
-[**View Features**](#features) | [**Installation Instructions**](#installation) | [**News**](https://github.com/afaqurk/linux-dash/news) | [**Documentation**](https://github.com/afaqurk/linux-dash/wiki)
+[**View Features**](#features) | [**Installation Instructions**](#installation) | [**Support**](#support) | [**Contributing**](#contributing)
 
 ## Features
 * A beautiful web-based dashboard for monitoring server info
