@@ -359,43 +359,6 @@ dashboard.getPing = function () {
     });
 }
 
-dashboard.getIspeed = function () {
-    var rateUpstream = $("#ispeed-rate-upstream");
-    var rateDownstream = $("#ispeed-rate-downstream");
-    var refreshIcon = $("#refresh-ispeed .icon-refresh");
-
-    // 0 = KB
-    // 1 = MB
-    var AS = 0;
-    var power = AS + 1;
-    var result = { 'upstream': 0, 'downstream': 0};
-
-    refreshIcon.addClass('icon-spin');
-
-    $.ajax({
-        url: 'sh/speed.php',
-        cache: false,
-        success: function (data) {
-            // round the speed (float to int);
-            // dependent on value of AS, calculate speed in MB or KB ps
-            result['upstream'] = Math.floor((data['upstream'] / (Math.pow(1024, power))));
-            result['downstream'] = Math.floor((data['downstream'] / (Math.pow(1024, power))));
-            // update rate of speed on widget
-            rateUpstream.text(result['upstream']);
-            rateDownstream.text(result['downstream']);
-        },
-        complete: function () {
-            refreshIcon.removeClass('icon-spin');
-        }
-    });
-
-    // update unit value in widget
-    var leadUpstream = rateUpstream.next(".lead");
-    var leadDownstream = rateDownstream.next(".lead");
-    leadUpstream.text(AS ? "MB/s" : "KB/s");
-    leadDownstream.text(AS ? "MB/s" : "KB/s");
-}
-
 dashboard.getLoadAverage = function () {
     $.get('/gutter/fetch-data/load_average', function (data) {
         $("#cpu-1min").text(data[0][0]);
@@ -406,31 +369,6 @@ dashboard.getLoadAverage = function () {
         $("#cpu-15min-per").text(data[2][1]);
     }, "json");
     generate_os_data('/gutter/fetch-data/numberofcores', "#core-number");
-}
-
-dashboard.getDnsmasqLeases = function () {
-    $.get("sh/dhcp-leases.php", function (data) {
-        var table = $("#dnsmasqleases_dashboard");
-        var ex = document.getElementById("dnsmasqleases_dashboard");
-        if ($.fn.DataTable.fnIsDataTable(ex)) {
-            table.hide().dataTable().fnClearTable();
-            table.dataTable().fnDestroy();
-        }
-
-        table.dataTable({
-            aaData: data,
-            aoColumns: [
-                { sTitle: "Expires At" },
-                { sTitle: "MAC Address" },
-                { sTitle: "IP Address", sType: "ip-address" },
-                { sTitle: "Hostname" }
-            ],
-            bPaginate: false,
-            bFilter: false,
-            bAutoWidth: true,
-            bInfo: false
-        }).fadeIn();
-    }, "json");
 }
 
 dashboard.getBandwidth = function () {
@@ -507,6 +445,4 @@ dashboard.fnMap = {
     bandwidth: dashboard.getBandwidth,
     lastlog: dashboard.getLastLog,
     ip: dashboard.getIp
-//    dnsmasqleases: dashboard.getDnsmasqLeases,
-//    ispeed: dashboard.getIspeed,
 };

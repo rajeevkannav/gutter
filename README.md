@@ -14,9 +14,9 @@ A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in 
 ## Installation
 
 1. add to your `Gemfile` ->  `'gutter'`.
-2. bundle install.
-3. `rails s`
-4. add this line to routs `mount Gutter::Engine => "/gutter"`
+2. add this line to routs `mount Gutter::Engine => "/gutter"`
+3. bundle install.
+4. `rails s`
 5. checkout `http://localhost:3000/gutter`
 
 
@@ -52,7 +52,7 @@ Soon you'll be listed here:
 * [gutter-people](https://github.com/rajeevkannav/gutter/graphs/contributors)
 
 ## Credits:
-* [linux-dash](https://github.com/afaqurk/linux-dash) - [afaqurk](https://github.com/afaqurk/) Thank-you So much!
+* [linux-dash](https://github.com/afaqurk/linux-dash) - [afaqurk](https://github.com/afaqurk/) Thank-you so much!
 * [Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/)
 * [Bootstrap](http://getbootstrap.com)
 * [Font Awesome](http://fontawesome.io/)
