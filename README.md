@@ -7,7 +7,7 @@ A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in 
 ## Features
 * A beautiful web-based dashboard for monitoring server info
 * Live, on-demand monitoring of RAM, Load, Uptime, Disk Allocation, Users and many more system stats
-* Drop-in install for servers with Apache2/nginx + PHP
+* Drop-in install for servers with Apache2/nginx + Ruby
 * Click and drag to re-arrange widgets
 * Support for wide range of linux server flavors [(See Support section)](#support)
 
